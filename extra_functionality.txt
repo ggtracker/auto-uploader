@@ -1,0 +1,20 @@
+
+Notable extra functionality (compared to what we agreed on):
+------------------------------------------------------------
+
+-Instance monitor.
+If an instance is already running, it will be detected and will be brought forward (instead of starting a 2nd instance of the application).
+
+-Log improvements: when started, logs go to a default log file, old log file is renamed (based on lastmod attribute).
+Logs are kep for a constant number of days, then automatically deleted on startup.
+
+-The replay folder input text field changes background if the provided folder does not exist or is not a folder (but a file).
+An error tool tip is also set in this case.
+
+-Status and stats are displayed (Status, Successful uploads, Failed uploads).
+
+-Clickable HTML version link opening the home page in the user's default browser in a platform independent way.
+
+-InfoMainClass registered as the main class of the main jar (ggtracker-uploader.jar) which when tried to run displays an info dialog about proper usage.
+
+-The tray icon shows the main window for a single click on Windows, and it has a popup menu on non-windows having one menu item to show the main window.

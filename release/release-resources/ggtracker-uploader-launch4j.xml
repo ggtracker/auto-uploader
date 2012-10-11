@@ -1,0 +1,40 @@
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar></jar>
+  <outfile>W:\ggtracker uploader\ggtracker-uploader.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl>http://ggtracker.com/uploader</supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>W:\ggtracker uploader\gg.ico</icon>
+  <classPath>
+    <mainClass>com/ggtracker/uploader/GgtrackerUploader</mainClass>
+    <cp>lib/ggtracker-uploader.jar</cp>
+    <cp>lib/jna.jar</cp>
+    <cp>lib/platform.jar</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <minVersion>1.6.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+  </jre>
+  <versionInfo>
+    <fileVersion>1.0.0.0</fileVersion>
+    <txtFileVersion>1.0</txtFileVersion>
+    <fileDescription>ggtracker uploader</fileDescription>
+    <copyright>ggtracker, inc.</copyright>
+    <productVersion>1.0.0.0</productVersion>
+    <txtProductVersion>1.0</txtProductVersion>
+    <productName>ggtracker uploader, http://ggtracker.com/uploader</productName>
+    <companyName>ggtracker, inc.</companyName>
+    <internalName>ggtracker uploader</internalName>
+    <originalFilename>ggtracker-uploader.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

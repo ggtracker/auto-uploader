@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="ggtracker uploader builder" default="buildRelease" basedir=".">
+	
+	<description>
+		ggtracker uploader builder. Can build releases.
+	</description>
+	
+	<!-- Folder properties -->
+	
+	<property name="appFolder"       value="app-folder"/>
+	<property name="resourcesFolder" value="release/release-resources"/>
+	<property name="buildFolder"     value="release/ggtracker uploader"/>
+	
+	<!-- Targets -->
+	
+	<target name="clearBuildFolder" description="Clears the release build folder">
+		<delete dir="${buildFolder}"/>
+		<mkdir  dir="${buildFolder}"/>
+	</target>
+	
+	<target name="buildRelease" depends="clearBuildFolder" description="Creates a ggtracker uploader release">
+		<!-- Copy static files -->
+		<copy todir="${buildFolder}" preservelastmodified="true">
+			<fileset dir="${appFolder}"/>
+		</copy>
+		
+		<!-- Create ggtracker-uploader.jar -->
+		<jar manifest="${resourcesFolder}/ggtracker-uploader-manifest.mf" basedir="bin" destfile="${buildFolder}/lib/ggtracker-uploader.jar" />
+		
+		<!-- Index jars -->
+		
+		<echo>Release build successful, release placed in folder: ${buildFolder}</echo>
+	</target>
+	
+</project>
