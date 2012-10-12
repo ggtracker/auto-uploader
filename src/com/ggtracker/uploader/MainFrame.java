@@ -68,9 +68,10 @@ public class MainFrame extends JFrame {
 		addWindowListener( new WindowAdapter() {
 			@Override
 			public void windowClosing( final WindowEvent event ) {
-				if ( GgtrackerUploader.trayIcon != null )
+				if ( GgtrackerUploader.trayIcon != null ) {
+					GgtrackerUploader.hide();
 					dispose();
-				else
+				} else
 					if ( JOptionPane.YES_OPTION == JOptionPane.showConfirmDialog( MainFrame.this, new String[] { "Warning! System tray icon could not be installed.", "Are you sure you want to Quit and Stop Uploading Replays?" }, "Warning!", JOptionPane.YES_NO_OPTION ) )
 						GgtrackerUploader.exit();
 			}
@@ -219,11 +220,12 @@ public class MainFrame extends JFrame {
 	 * Restores the main frame even if it is minimized to tray.
 	 */
 	public void restore() {
-		// Set NORMAL extended state in case window is iconified but not closed
-		setExtendedState( Frame.NORMAL );
-		
 		// Make main frame visible:
 		setVisible( true );
+		
+		// Now set NORMAL extended state in case window is iconified but not closed
+		setExtendedState( Frame.NORMAL );
+
 	}
 	
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="ggtracker uploader builder" default="buildRelease" basedir=".">
+<project name="ggtracker uploader builder" default="compile" basedir=".">
 	
 	<description>
 		ggtracker uploader builder. Can build releases.
@@ -10,9 +10,78 @@
 	
 	<property name="appFolder"       value="app-folder"/>
 	<property name="resourcesFolder" value="release/release-resources"/>
-	<property name="buildFolder"     value="release/ggtracker uploader"/>
+	<property name="buildFolder"     value="build"/>
 	
-	<!-- Targets -->
+	<property name="launch4j.dir" location="C:\Program Files (x86)\Launch4j" />
+	<taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpath="${launch4j.dir}/launch4j.jar :${launch4j.dir}/lib/xstream.jar" />
+	
+	<target name="clean">
+		<delete dir="build"/>
+	</target>
+	
+	<target name="compile">
+		<mkdir dir="build/classes"/>
+		<javac srcdir="src" destdir="build/classes" includeantruntime="false">
+			<classpath>
+				<fileset dir="libs">
+				    <include name="*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="package" depends="compile">
+		<mkdir dir="build/gguploader" />
+		
+		<!-- Why does the class loader only find things in the com.ggtracker.uploader package? -->
+		<copy todir="build/classes/com/ggtracker/uploader/resources" preservelastmodified="true">
+			<fileset dir="resources" />
+		</copy>
+		
+		<jar manifest="manifest.mf" basedir="build/classes" destFile="build/gguploader/gguploader.jar" />
+		<copy todir="build/gguploader/libs" preservelastmodified="true">
+			<fileset dir="libs" />
+		</copy>
+	</target>
+	
+	<target name="run" depends="package">
+		<java jar="build/gguploader/gguploader.jar" fork="true" />
+	</target>
+	
+	<target name="package-windows" depends="package">
+		<mkdir dir="build/gguploader-windows/libs" />
+		<copy todir="build/gguploader-windows/libs">
+			<fileset dir="build/gguploader/libs" />
+		</copy>
+		<copy todir="build/gguploader-windows/">
+			<fileset dir=".">
+				<include name="gg.ico" />
+				<include name="LICENSE.txt" />
+			</fileset>
+		</copy>
+		<launch4j configFile="launch4j.xml" />
+	</target>
+	
+	<target name="package-osx" depends="package">
+		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/MacOS/libs" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents/MacOS" file="build/gguploader/gguploader.jar" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents/MacOS/libs" >
+			<fileset dir="build/gguploader/libs" />
+		</copy>
+
+		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/Resources" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents/Resources">
+			<fileset dir=".">
+				<include name="Info.plist" />
+				<include name="LICENSE.txt" />
+			</fileset>
+			<fileset dir="resources">
+				<include name="gg.png" />
+			</fileset>
+		</copy>
+	</target>
+	
+	<!-- 
 	
 	<target name="clearBuildFolder" description="Clears the release build folder">
 		<delete dir="${buildFolder}"/>
@@ -20,17 +89,16 @@
 	</target>
 	
 	<target name="buildRelease" depends="clearBuildFolder" description="Creates a ggtracker uploader release">
-		<!-- Copy static files -->
 		<copy todir="${buildFolder}" preservelastmodified="true">
 			<fileset dir="${appFolder}"/>
 		</copy>
-		
-		<!-- Create ggtracker-uploader.jar -->
 		<jar manifest="${resourcesFolder}/ggtracker-uploader-manifest.mf" basedir="bin" destfile="${buildFolder}/lib/ggtracker-uploader.jar" />
 		
-		<!-- Index jars -->
+		<launch4j configFile="./release/release-resources/ggtracker-uploader-launch4j.xml" />
 		
 		<echo>Release build successful, release placed in folder: ${buildFolder}</echo>
 	</target>
+	
+	-->
 	
 </project>

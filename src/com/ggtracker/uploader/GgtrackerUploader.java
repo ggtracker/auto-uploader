@@ -10,6 +10,10 @@
 package com.ggtracker.uploader;
 
 import java.awt.AWTException;
+
+import java.net.URLClassLoader;
+
+import java.awt.Frame;
 import java.awt.MenuItem;
 import java.awt.PopupMenu;
 import java.awt.SystemTray;
@@ -18,9 +22,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Enumeration;
 
 import javax.swing.UIManager;
 
+import java.net.URLClassLoader;
 /**
  * This is the main class of ggtracker uploader.
  * 
@@ -42,6 +50,9 @@ public class GgtrackerUploader {
 	/** Reference to the main frame. */
 	public static MainFrame           mainFrame;
 	
+	/** Reference to the popup menu. */
+	public static PopupMenu			  popupMenu;
+	
 	// End of Public Object repository
 	
 	
@@ -55,10 +66,18 @@ public class GgtrackerUploader {
 		try {
 			UIManager.setLookAndFeel( UIManager.getSystemLookAndFeelClassName() );
 		} catch ( final Exception e ) {
+			e.printStackTrace();
 		}
-		
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
+        
+        URL[] urls = ((URLClassLoader)cl).getURLs();
+ 
+        for(URL url: urls){
+        	System.out.println(url.getFile());
+        }
+		System.out.println(GgtrackerUploader.class.getClassLoader().getClass().getName());
 		// Check running instances and active it if there's one
-		InstanceMonitor.checkRunningInstance( arguments );
+		 InstanceMonitor.checkRunningInstance( arguments );
 		
 		// Init logging
 		Log.init();
@@ -97,6 +116,17 @@ public class GgtrackerUploader {
 			return;
 		}
 		
+		
+		try {
+			Enumeration<URL> urls = Consts.class.getClassLoader().getResources("");
+			while(urls.hasMoreElements()) {
+				System.out.println(urls.nextElement());
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		trayIcon = new TrayIcon( Consts.APP_ICON.getImage(), Consts.APP_NAME + " is running." );
 		trayIcon.setImageAutoSize( true );
 		
@@ -108,29 +138,56 @@ public class GgtrackerUploader {
 	        trayIcon = null;
         }
 		
-		// Windows properly passes left click to the tray icon, MAC OS-X does not!
-		if ( Consts.OS == OperatingSystem.WINDOWS ) {
-    		trayIcon.addMouseListener( new MouseAdapter() {
-    			@Override
-    			public void mouseClicked( final MouseEvent event ) {
-    				if ( mainFrame != null )
-        				mainFrame.restore();
-    			}
-    		} );
-		}
-		else {
-			final PopupMenu popupMenu = new PopupMenu();
-			final MenuItem menuItem = new MenuItem( "Show ggtracker uploader" );
-			menuItem.addActionListener( new ActionListener() {
-				@Override
-				public void actionPerformed( final ActionEvent event ) {
-    				if ( mainFrame != null )
-        				mainFrame.restore();
+		popupMenu = new PopupMenu();
+		final MenuItem quitMenuItem = new MenuItem("Quit");
+		quitMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed( final ActionEvent event) {
+				exit();
+			}
+		});
+		
+		final MenuItem showHideMenuItem = new MenuItem("Minimize to Tray");
+		showHideMenuItem.addActionListener( new ActionListener() {
+			@Override
+			public void actionPerformed( final ActionEvent event ) {
+				if (!mainFrame.isVisible()) {
+					show();
+				} else {
+					hide();
 				}
-			} );
-			popupMenu.add( menuItem );
-			trayIcon.setPopupMenu( popupMenu );
-		}
+			}
+		} );
+		
+		
+		popupMenu.add( showHideMenuItem );
+		popupMenu.add( quitMenuItem );
+		trayIcon.setPopupMenu( popupMenu );
+		
+		// Windows properly passes left click to the tray icon, MAC OS-X does not!
+		// So this listener probably will only work on windows for now. Need OS-X Solution!
+		trayIcon.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked( final MouseEvent event ) {
+				if (event.getButton() == MouseEvent.BUTTON1) {
+    				if (!mainFrame.isVisible()) {
+    					show();
+    				} else {
+    					hide();
+    				}
+				}
+			}
+		});
+	}
+	
+	public static void hide() {
+		mainFrame.setVisible(false);
+		popupMenu.getItem(0).setLabel("Restore Window");
+	}
+	
+	public static void show() {
+		mainFrame.restore();
+		mainFrame.toFront();
+		popupMenu.getItem(0).setLabel("Minimize to Tray");
 	}
 	
 	/**

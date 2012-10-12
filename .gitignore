@@ -2,3 +2,7 @@
 .project
 bin
 release
+*.class
+build
+.externalToolBuilders
+release

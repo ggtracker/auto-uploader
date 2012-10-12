@@ -56,9 +56,13 @@ public class InstanceMonitor extends Thread {
 			final ServerSocket serverSocket = new ServerSocket( PORT, 0, InetAddress.getByName( "localhost" ) );
 			
 			// If server socket is created: there is no instance yet, we will be THE instance
+			System.out.println("No running instance found.");
 			new InstanceMonitor( serverSocket );
 			
+			
 		} catch ( final Exception e ) {
+			System.out.println("Connecting to a running instance.");
+			e.printStackTrace();
 			// There is already a running instance, connect to it
 			Socket      socket = null;
 			PrintWriter output = null; 
@@ -94,13 +98,13 @@ public class InstanceMonitor extends Thread {
 		while ( true ) {
 			Socket         inSocket = null;
 			BufferedReader input    = null;
-			
+			System.out.println("Looping.");
 			try {
 				inSocket = serverSocket.accept();
-				
+				System.out.println("Accepted the socket.");
 				// Restore main window even if minimized to system tray
-				if ( GgtrackerUploader.mainFrame != null )
-					GgtrackerUploader.mainFrame.restore();
+				System.out.println("restoring the main frame");
+				GgtrackerUploader.mainFrame.restore();
 				
 				input = new BufferedReader( new InputStreamReader( inSocket.getInputStream() ) );
 				final int argumentsCount = Integer.parseInt( input.readLine() );

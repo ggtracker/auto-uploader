@@ -35,7 +35,7 @@ public class Consts {
 	public static final boolean DEV_MODE = System.getProperty( "dev-mode" ) != null;
 	
 	/** Application icon. Used as the main frame icon image and as the tray icon image. */
-	public static final ImageIcon APP_ICON = new ImageIcon( Consts.class.getResource( "gg.png" ) );
+	public static final ImageIcon APP_ICON = new ImageIcon( Consts.class.getResource("resources/gg.png") );
 	
 	/** Home page URL.                                                        */
 	public static final String URL_HOME_PAGE          = "http://ggtracker.com/uploader";
