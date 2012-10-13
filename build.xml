@@ -48,18 +48,21 @@
 		<java jar="build/gguploader/gguploader.jar" fork="true" />
 	</target>
 	
-	<target name="package-windows" depends="package">
-		<mkdir dir="build/gguploader-windows/libs" />
-		<copy todir="build/gguploader-windows/libs">
+	<target name="package-win" depends="package">
+		<mkdir dir="build/gguploader-win/libs" />
+		<copy todir="build/gguploader-win/libs">
 			<fileset dir="build/gguploader/libs" />
 		</copy>
-		<copy todir="build/gguploader-windows/">
+		<copy todir="build/gguploader-win/">
 			<fileset dir=".">
 				<include name="gg.ico" />
 				<include name="LICENSE.txt" />
 			</fileset>
 		</copy>
 		<launch4j configFile="launch4j.xml" />
+		<zip destfile="build/gguploader-win.zip" basedir="build">
+			<include name="gguploader-win/**"/>
+		</zip>
 	</target>
 	
 	<target name="package-osx" depends="package">
@@ -70,15 +73,14 @@
 		</copy>
 
 		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/Resources" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents" file="Info.plist" />
 		<copy todir="build/gguploader-osx/gguploader.app/Contents/Resources">
-			<fileset dir=".">
-				<include name="Info.plist" />
-				<include name="LICENSE.txt" />
-			</fileset>
 			<fileset dir="resources">
-				<include name="gg.png" />
+				<include name="gg.icns" />
 			</fileset>
 		</copy>
+		
+		<zip destfile="build/gguploader-osx.zip" basedir="build/gguploader-osx" />
 	</target>
 	
 	<!-- 

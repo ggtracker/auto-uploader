@@ -2,29 +2,27 @@
 <!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-  <!-- 
-    The keys of the plist and their purpose are documented on Apple's developer website:
-	
-	  https://developer.apple.com/library/mac/#documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html
-
-    Required Keys
-  -->
-  <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleName</key><string>gguploader</string>
-  <key>CFBunderVersion</key><string>1.0.0</string>
-  <key>CFBundleDisplayName</key><string>GGTracker Uploader</string>
-  <key>CFBundleIdentifier</key><string>com.ggtracker.uploader</string>
-  <key>CFBundleSignature</key><string>ggup</string>
-  <key>CFBundleExecutable</key><string>ggtracker.jar</string>
-  
-  <!-- Extras -->
-  <key>CFBundleIconFile</key><string>gg.png</string>
-  <key>NSHumanReadableCopyright</key><string>Copyright ggtracker, inc. 2012</string>
-  
-  <key>CFBundleShortVersionString</key><string>1.0.0</string>
-  <key>CFBundleInfoDictionaryVersion</key><string>6.0</string>
-
-  <key>IFMajorVersion</key><integer>0</integer>
-  <key>IFMinorVersion</key><integer>1</integer>
+  <key>CFBundleDisplayName</key>
+  <string>GGTracker Uploader</string>
+  <key>CFBundleExecutable</key>
+  <string>ggtracker.jar</string>
+  <key>CFBundleGetInfoString</key>
+  <string>GGUploader</string>
+  <key>CFBundleIconFile</key>
+  <string>gg.icns</string>
+  <key>CFBundleIdentifier</key>
+  <string>com.ggtracker.uploader</string>
+  <key>CFBundleInfoDictionaryVersion</key>
+  <string>1.0</string>
+  <key>CFBundleName</key>
+  <string>gguploader</string>
+  <key>CFBundlePackageType</key>
+  <string>APPL</string>
+  <key>CFBundleShortVersionString</key>
+  <string>1.0.0</string>
+  <key>CFBundleSignature</key>
+  <string>GGUP</string>
+  <key>CFBunderVersion</key>
+  <string>1.0.0</string>
 </dict>
 </plist>
