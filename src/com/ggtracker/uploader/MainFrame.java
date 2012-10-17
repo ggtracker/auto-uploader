@@ -13,6 +13,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -155,18 +158,40 @@ public class MainFrame extends JFrame {
 		contentBox.add( wrapper );
 		
 		// ACTIONS
-		
-		contentBox.add( Box.createVerticalStrut( SPACING ) );
-		wrapper = new JPanel( new FlowLayout( FlowLayout.RIGHT, 0, 0 ) );
-		final JButton exitButton = new JButton( "Quit and Stop Uploading Replays" );
-		exitButton.addActionListener( new ActionListener() {
+		MenuBar menubar = new MenuBar();
+		Menu file = new Menu("File");
+		MenuItem replays = new MenuItem("View Replays");
+		MenuItem logs = new MenuItem("View Logs");
+		MenuItem exit = new MenuItem("Exit");
+		exit.addActionListener( new ActionListener() {
 			@Override
 			public void actionPerformed( final ActionEvent event ) {
 				GgtrackerUploader.exit();
 			}
 		} );
-		wrapper.add( exitButton );
-		wrapper.add( Box.createHorizontalStrut( 3 ) );
+		file.add(replays);
+		file.add(logs);
+		file.add(exit);
+		
+		Menu help = new Menu("Help");
+		MenuItem faq = new MenuItem("Online Help");
+		help.add(faq);
+		
+		menubar.add(file);
+		menubar.add(help);
+		setMenuBar(menubar);
+		
+		contentBox.add( Box.createVerticalStrut( SPACING ) );
+		wrapper = new JPanel( new FlowLayout( FlowLayout.RIGHT, 0, 0 ) );
+//		final JButton exitButton = new JButton( "Quit and Stop Uploading Replays" );
+//		exitButton.addActionListener( new ActionListener() {
+//			@Override
+//			public void actionPerformed( final ActionEvent event ) {
+//				GgtrackerUploader.exit();
+//			}
+//		} );
+//		wrapper.add( exitButton );
+//		wrapper.add( Box.createHorizontalStrut( 3 ) );
 		wrapper.add( Utils.createLinkLabel( Consts.APP_VERSION, Consts.URL_HOME_PAGE ) );
 		contentBox.add( wrapper );
 		
