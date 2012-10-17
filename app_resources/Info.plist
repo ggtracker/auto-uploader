@@ -5,7 +5,7 @@
   <key>CFBundleDisplayName</key>
   <string>GGTracker Uploader</string>
   <key>CFBundleExecutable</key>
-  <string>ggtracker.jar</string>
+  <string>JavaApplicationStub</string>
   <key>CFBundleGetInfoString</key>
   <string>GGUploader</string>
   <key>CFBundleIconFile</key>
@@ -21,8 +21,15 @@
   <key>CFBundleShortVersionString</key>
   <string>1.0.0</string>
   <key>CFBundleSignature</key>
-  <string>GGUP</string>
+  <string>????</string>
   <key>CFBunderVersion</key>
   <string>1.0.0</string>
+  <key>Java</key>
+  <dict>
+  	<key>JVMVersion</key>
+  	<string>1.6+</string>
+  	<key>MainClass</key>
+  	<string>com.ggtracker.uploader.GgtrackerUploader</string>
+  </dict>
 </dict>
 </plist>

@@ -66,19 +66,18 @@
 	</target>
 	
 	<target name="package-osx" depends="package">
-		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/MacOS/libs" />
-		<copy todir="build/gguploader-osx/gguploader.app/Contents/MacOS" file="build/gguploader/gguploader.jar" />
-		<copy todir="build/gguploader-osx/gguploader.app/Contents/MacOS/libs" >
+		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/Resources/Java/libs" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents/Resources/Java" file="build/gguploader/gguploader.jar" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents/Resources/Java/libs" >
 			<fileset dir="build/gguploader/libs" />
 		</copy>
 
-		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/Resources" />
-		<copy todir="build/gguploader-osx/gguploader.app/Contents" file="Info.plist" />
-		<copy todir="build/gguploader-osx/gguploader.app/Contents/Resources">
-			<fileset dir="resources">
-				<include name="gg.icns" />
-			</fileset>
-		</copy>
+		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/MacOS" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents/MacOS" file="app_resources/JavaApplicationStub" />
+		
+		<copy todir="build/gguploader-osx/gguploader.app/Contents" file="app_resources/Info.plist" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents" file="app_resources/PkgInfo" />
+		<copy todir="build/gguploader-osx/gguploader.app/Contents/Resources" file="resources/gg.png" />
 		
 		<zip destfile="build/gguploader-osx.zip" basedir="build/gguploader-osx" />
 	</target>
