@@ -205,15 +205,14 @@ public class MainFrame extends JFrame {
 	 * Increments the successful uploads count.
 	 */
 	public void incUploadCount() {
-		uploadCount.incrementAndGet();
-		uploadedCountLabel.setText( Integer.toString( uploadCount.get() ) );
+		uploadedCountLabel.setText( Integer.toString( uploadCount.incrementAndGet() ) );
 	}
 	
 	/**
 	 * Increments the failed uploads count.
 	 */
 	public void incFailedCount() {
-		failedCountLabel.setText( Integer.toString( failedCount.get() ) );
+		failedCountLabel.setText( Integer.toString( failedCount.incrementAndGet() ) );
 	}
 	
 	/**
