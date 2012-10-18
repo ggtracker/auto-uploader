@@ -74,6 +74,8 @@
 
 		<mkdir dir="build/gguploader-osx/gguploader.app/Contents/MacOS" />
 		<copy todir="build/gguploader-osx/gguploader.app/Contents/MacOS" file="app_resources/JavaApplicationStub" />
+		<!-- Ant's copy task always wipes permissions so we need to manually set any custom permissions -->
+		<chmod file="build/gguploader-osx/gguploader.app/Contents/MacOS/JavaApplicationStub" perm="a+x" />
 		
 		<copy todir="build/gguploader-osx/gguploader.app/Contents" file="app_resources/Info.plist" />
 		<copy todir="build/gguploader-osx/gguploader.app/Contents" file="app_resources/PkgInfo" />
