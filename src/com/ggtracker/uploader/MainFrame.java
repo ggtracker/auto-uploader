@@ -158,6 +158,8 @@ public class MainFrame extends JFrame {
 		
 		contentBox.add( Box.createVerticalStrut( SPACING ) );
 		wrapper = new JPanel( new FlowLayout( FlowLayout.RIGHT, 0, 0 ) );
+		wrapper.add( Utils.createLinkLabel("Online Help", Consts.ONLINE_HELP_LINK));
+		wrapper.add( Box.createHorizontalStrut( 20 ) );
 		final JButton exitButton = new JButton( "Quit and Stop Uploading Replays" );
 		exitButton.addActionListener( new ActionListener() {
 			@Override
@@ -166,8 +168,8 @@ public class MainFrame extends JFrame {
 			}
 		} );
 		wrapper.add( exitButton );
-		wrapper.add( Box.createHorizontalStrut( 3 ) );
-		wrapper.add( Utils.createLinkLabel( Consts.APP_VERSION, Consts.URL_HOME_PAGE ) );
+		wrapper.add( Box.createHorizontalStrut( 10 ) );
+		wrapper.add( Utils.createLinkLabel( Consts.APP_VERSION, Consts.ABOUT_UPLOADER_LINK ) );
 		contentBox.add( wrapper );
 		
 		Utils.alignBox( contentBox, SwingConstants.CENTER );

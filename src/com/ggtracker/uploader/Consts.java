@@ -26,7 +26,10 @@ public class Consts {
 	public static final String APP_VERSION      = "v1.0";
 	/** Application release date. */
 	public static final String APP_RELEASE_DATE = "2012-10-10";
-	
+
+	public static final String ONLINE_HELP_LINK = "http://www.ggtracker.com/uploader/help";
+	public static final String ABOUT_UPLOADER_LINK = "http://www.ggtracker.com/uploader";
+
 	/** Running operating system. */
 	public static final OperatingSystem OS = OperatingSystem.detect();
 	
