@@ -64,8 +64,8 @@ public class Utils {
 	 * @param targetUrl URL to be opened when clicked
 	 */
 	public static JLabel createLinkLabel( final String text, final String targetUrl ) {
-		final JLabel linkLabel = new JLabel( "<html><a href='#'>v" + text.replace( " ", "&nbsp;" ).replace( "<", "&lt;" ).replace( ">", "&gt;" ) + "</a></html>" );
-		
+		final JLabel linkLabel = new JLabel( "<html><a href='#'>" + text.replace( " ", "&nbsp;" ).replace( "<", "&lt;" ).replace( ">", "&gt;" ) + "</a></html>" );
+
 		linkLabel.setCursor( Cursor.getPredefinedCursor( Cursor.HAND_CURSOR ) );
 		linkLabel.setToolTipText( targetUrl );
 		

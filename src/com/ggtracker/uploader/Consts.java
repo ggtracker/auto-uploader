@@ -23,7 +23,7 @@ public class Consts {
 	/** Application name.         */
 	public static final String APP_NAME         = "ggtracker uploader";
 	/** Application version.      */
-	public static final String APP_VERSION      = "1.0";
+	public static final String APP_VERSION      = "v1.0";
 	/** Application release date. */
 	public static final String APP_RELEASE_DATE = "2012-10-10";
 	
