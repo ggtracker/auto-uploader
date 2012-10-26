@@ -139,7 +139,7 @@ public class GgtrackerUploader {
         }
 		
 		popupMenu = new PopupMenu();
-		final MenuItem quitMenuItem = new MenuItem("Quit");
+		final MenuItem quitMenuItem = new MenuItem("Quit and Stop Uploading");
 		quitMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed( final ActionEvent event) {
 				exit();
