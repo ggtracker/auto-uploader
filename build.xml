@@ -35,7 +35,7 @@
 			<fileset dir="resources" />
 		</copy>
 		
-		<jar manifest="manifest.mf" basedir="build/classes" destFile="build/gguploader/gguploader.jar" />
+		<jar manifest="manifest.mf" basedir="build/classes" destFile="build/gguploader/ggtracker-uploader.jar" />
 		<copy todir="build/gguploader/libs" preservelastmodified="true">
 			<fileset dir="libs" />
 		</copy>

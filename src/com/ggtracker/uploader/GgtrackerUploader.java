@@ -185,8 +185,15 @@ public class GgtrackerUploader {
 	}
 	
 	public static void show() {
-		mainFrame.restore();
-		mainFrame.toFront();
+		// http://stackoverflow.com/a/387365
+		java.awt.EventQueue.invokeLater(new Runnable() {
+		    @Override
+		    public void run() {
+				mainFrame.restore();
+		    	mainFrame.toFront();
+		    	mainFrame.repaint();
+		    }
+		});
 		popupMenu.getItem(0).setLabel("Minimize to Tray");
 	}
 	
