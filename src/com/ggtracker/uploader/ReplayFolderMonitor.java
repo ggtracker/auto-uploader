@@ -145,10 +145,9 @@ public class ReplayFolderMonitor extends Thread implements FileFilter {
 	
 	/** Name of the request version parameter. */
 	private static final String PARAM_NAME_REQUEST_VERSION = "requestVersion";
-	/** Name of the user name parameter.       */
-	private static final String PARAM_NAME_USER_NAME       = "userName";
-	/** Name of the password parameter.        */
-	private static final String PARAM_NAME_PASSWORD        = "password";
+
+	private static final String PARAM_NAME_AUTH_TOKEN      = "accessToken";
+
 	/** Name of the description parameter.     */
 	private static final String PARAM_NAME_DESCRIPTION     = "description";
 	/** Name of the file name parameter.       */
@@ -197,12 +196,13 @@ public class ReplayFolderMonitor extends Thread implements FileFilter {
     			paramsMap.put( PARAM_NAME_FILE_NAME      , lastReplayFile.getName() );
     			paramsMap.put( PARAM_NAME_FILE_SIZE      , Long.toString( lastReplayFile.length() ) );
     			paramsMap.put( PARAM_NAME_DESCRIPTION    , "" ); // Not used
-    			paramsMap.put( PARAM_NAME_USER_NAME      , Settings.get( Settings.KEY_USER_NAME ) );
-    			paramsMap.put( PARAM_NAME_PASSWORD       , Settings.get( Settings.KEY_UPLOAD_KEY ) );
+//    			paramsMap.put( PARAM_NAME_USER_NAME      , Settings.get( Settings.KEY_USER_NAME ) );
+    			paramsMap.put( PARAM_NAME_AUTH_TOKEN      , Settings.get( Settings.KEY_AUTH_TOKEN ) );
+//    			paramsMap.put( PARAM_NAME_PASSWORD       , Settings.get( Settings.KEY_UPLOAD_KEY ) );
     			paramsMap.put( PARAM_NAME_FILE_MD5       , fileMd5 );
     			paramsMap.put( PARAM_NAME_FILE_CONTENT   , fileBase64 );
     			
-    			httpPost = new HttpPost( "http://ggtracker.com/api/upload", paramsMap );
+    			httpPost = new HttpPost( "http://ggtracker.com/replays/drop", paramsMap );
     			
     			if ( !httpPost.connect() ) {
     				System.out.println( "Failed to connect!" );

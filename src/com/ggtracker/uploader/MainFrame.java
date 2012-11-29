@@ -129,13 +129,8 @@ public class MainFrame extends JFrame {
 		contentBox.add( row );
 		contentBox.add( Box.createVerticalStrut( SPACING ) );
 		row = Box.createHorizontalBox();
-		row.add( new JLabel( "User name:" ) );
-		row.add( Utils.createSettingTextField( Settings.KEY_USER_NAME ) );
-		contentBox.add( row );
-		contentBox.add( Box.createVerticalStrut( SPACING ) );
-		row = Box.createHorizontalBox();
 		row.add( new JLabel( "Upload key:" ) );
-		row.add( Utils.createSettingTextField( Settings.KEY_UPLOAD_KEY ) );
+		row.add( Utils.createSettingTextField( Settings.KEY_AUTH_TOKEN) );
 		contentBox.add( row );
 		Utils.formLayoutBox( contentBox, 1 );
 		
@@ -158,7 +153,7 @@ public class MainFrame extends JFrame {
 		
 		contentBox.add( Box.createVerticalStrut( SPACING ) );
 		wrapper = new JPanel( new FlowLayout( FlowLayout.RIGHT, 0, 0 ) );
-		wrapper.add( Utils.createLinkLabel("Online Help", Consts.ONLINE_HELP_LINK));
+//		wrapper.add( Utils.createLinkLabel("Online Help", Consts.ONLINE_HELP_LINK));
 		wrapper.add( Box.createHorizontalStrut( 20 ) );
 		final JButton exitButton = new JButton( "Quit and Stop Uploading Replays" );
 		exitButton.addActionListener( new ActionListener() {
@@ -169,7 +164,7 @@ public class MainFrame extends JFrame {
 		} );
 		wrapper.add( exitButton );
 		wrapper.add( Box.createHorizontalStrut( 10 ) );
-		wrapper.add( Utils.createLinkLabel( Consts.APP_VERSION, Consts.ABOUT_UPLOADER_LINK ) );
+//		wrapper.add( Utils.createLinkLabel( Consts.APP_VERSION, Consts.ABOUT_UPLOADER_LINK ) );
 		contentBox.add( wrapper );
 		
 		Utils.alignBox( contentBox, SwingConstants.CENTER );

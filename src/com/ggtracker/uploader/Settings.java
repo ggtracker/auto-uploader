@@ -25,12 +25,11 @@ public class Settings {
 	public static final File SETTINGS_FILE = new File( Consts.FOLDER_USER_CONTENT, "settings.xml" );
 	
 	
-	/** Replay folder setting.             */
 	public static final String KEY_REPLAY_FOLDER             = "replayFolder";
-	/** User name setting.                 */
 	public static final String KEY_USER_NAME                 = "userName";
-	/** Upload key setting.                */
 	public static final String KEY_UPLOAD_KEY                = "uploadKey";
+	public static final String KEY_AUTH_TOKEN                = "authToken";
+	
 	/** Saved with version setting.        */
 	public static final String KEY_META_SAVED_WITH_VERSION   = "meta.savedWithVersion";
 	/** Save time setting.                 */
